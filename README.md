@@ -4,7 +4,7 @@
 - CSS 
 - JavaScript
 - LocalStorage
-- interacción de edición de datos en ventana span
+- DOM
 
 
 #### Demo
