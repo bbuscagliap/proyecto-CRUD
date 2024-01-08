@@ -7,5 +7,5 @@
 - interacción de edición de datos en ventana span
 
 
-#### ## # # Demo
+######## Demo
 **https://bbuscagliap.github.io/proyecto-CRUD/**
