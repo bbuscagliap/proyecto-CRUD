@@ -2,33 +2,33 @@
 header {
     background-color: #f4f4f4;
     padding: 1px 0;
-  }
-  
-  header img {
+}
+
+header img {
     width: 100px; /* Ajusta el tamaño según sea necesario */
     height: auto;
     border-radius: 20%; /* Estilo de esquinas redondeadas */
     display: block; /* Centra la imagen */
     margin: 0 auto; /* Centra la imagen */
-  }
-  
-  header p {
+}
+
+header p {
     margin-top: 10px;
     font-size: 2em; /* Ajusta el tamaño del texto según sea necesario */
     color: #333;
-  }
-  
-  /* Resto del código... */
-  
-  body {
+}
+
+/* Resto del código... */
+
+body {
     font-family: 'Arial', sans-serif;
     background-color: #f4f4f4;
     text-align: left;
     margin: 0;
     padding: 0;
-  }
-  
-  .container {
+}
+
+.container {
     text-align: left;
     max-width: 800px;
     margin: 30px auto;
@@ -36,63 +36,66 @@ header {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-  }
-  
-  h2 {
+}
+
+h2 {
     color: #333;
-  }
-  
-  form {
+}
+
+form {
     margin-bottom: 20px;
-  }
-  
-  label {
+}
+
+label {
     display: block;
     margin-bottom: 8px;
     color: #555;
-  }
-  
-  input {
+}
+
+input {
     width: 100%;
     padding: 8px;
     margin-bottom: 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
-  }
-  
-  button {
+}
+
+button {
     background-color: #4caf50;
     color: #fff;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  button:hover {
+}
+
+button:hover {
     background-color: #45a049;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 10px;
-    background-color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
     padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  li span {
-    display: block;
-    margin-bottom: 6px;
-  }
-  
-  button.edit,
-  button.delete {
+    text-align: left;
+}
+
+th {
+    background-color: #4caf50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+button.edit,
+button.delete {
     background-color: #3498db;
     color: #fff;
     padding: 5px 10px;
@@ -100,35 +103,66 @@ header {
     border-radius: 4px;
     cursor: pointer;
     margin-right: 5px;
-  }
-  
-  button.edit:hover,
-  button.delete:hover {
+    margin-bottom: 6px;
+}
+
+button.edit:hover,
+button.delete:hover {
     background-color: #2980b9;
-  }
-  
-  footer {
+}
+
+footer {
     background-color: #f4f4f4;
     color: #fff;
     text-align: center;
     padding: 10px 0;
-  }
-  
-  footer p {
+}
+
+footer p {
     font-family: 'Arial', sans-serif;
     font-size: 14px;
     margin: 0;
-  }
-  /* Estilos responsive */
-  @media screen and (max-width: 600px) {
+}
+/* Resto del código... */
+
+button.edit,
+button.delete,
+button.save {
+    margin-right: 10px; /* Ajusta la distancia entre los botones */
+    width: 80px; /* Establece un ancho fijo para los botones */
+}
+
+button.save {
+    background-color: #4caf50; /* Cambia el color del botón "Guardar" */
+}
+
+button.save:hover {
+    background-color: #45a049; /* Cambia el color al pasar el mouse sobre el botón "Guardar" */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Resto del código... */
+
+/* Estilos responsive */
+@media screen and (max-width: 600px) {
     .container {
-      padding: 10px;
-      margin: 20px auto;
+        padding: 10px;
+        margin: 20px auto;
     }
-  
+
     input,
     button {
-      width: 100%; /* Ajusta el ancho al 100% en pantallas pequeñas */
+        width: 100%; /* Ajusta el ancho al 100% en pantallas pequeñas */
     }
-  }
-  
+}

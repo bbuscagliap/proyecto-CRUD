@@ -7,122 +7,125 @@ document.addEventListener("DOMContentLoaded", function () {
     const emailInput = document.getElementById("email");
     const dateInput = document.getElementById("date");
     const taskList = document.getElementById("taskList");
-  
+
     // Recuperar tareas almacenadas en localStorage al cargar la página
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-    storedTasks.forEach(task => addTaskToDOM(task));
-  
-    taskForm.addEventListener("submit", function (e) {
-      e.preventDefault();
-  
-      const taskText = taskInput.value.trim();
-      const timeText = timeInput.value.trim();
-      const clientText = clientInput.value.trim();
-      const phoneText = phoneInput.value.trim();
-      const emailText = emailInput.value.trim();
-      const dateText = dateInput.value;
-  
-      if (taskText !== "") {
-        const newTask = { task: taskText, time: timeText, client: clientText, phone: phoneText, email: emailText, date: dateText };
-        addTaskToDOM(newTask);
-        saveTaskToLocalStorage(newTask);
-  
-        // Limpiar campos después de agregar tarea
-        taskInput.value = "";
-        timeInput.value = "";
-        clientInput.value = "";
-        phoneInput.value = "";
-        emailInput.value = "";
-        dateInput.value = "";
-      }
+    let data = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    taskForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const taskText = taskInput.value.trim();
+        const timeText = timeInput.value.trim();
+        const clientText = clientInput.value.trim();
+        const phoneText = phoneInput.value.trim();
+        const emailText = emailInput.value.trim();
+        const dateText = dateInput.value;
+
+        if (taskText !== "") {
+            const newTask = { task: taskText, time: timeText, client: clientText, phone: phoneText, email: emailText, date: dateText };
+            data.push(newTask);
+            saveDataToLocalStorage();
+            renderTable();
+
+            taskForm.reset();
+        } else {
+            alert('Por favor, llena todos los campos');
+        }
     });
-  
-    function addTaskToDOM(task) {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <span>${task.task}</span>
-        <span>${task.time}</span>
-        <span>${task.client}</span>
-        <span>${task.phone}</span>
-        <span>${task.email}</span>
-        <span>${task.date}</span>
-        <button class="edit">Editar</button>
-        <button class="delete">Eliminar</button>
-      `;
-      taskList.appendChild(li);
-  
-      li.querySelector(".edit").addEventListener("click", function () {
-        editTask(li);
-      });
-  
-      li.querySelector(".delete").addEventListener("click", function () {
-        deleteTask(li);
-      });
+
+    function saveDataToLocalStorage() {
+        localStorage.setItem('tasks', JSON.stringify(data));
     }
-  
-    function saveTaskToLocalStorage(task) {
-      const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-      storedTasks.push(task);
-      localStorage.setItem("tasks", JSON.stringify(storedTasks));
+
+    function renderTable() {
+        taskList.innerHTML = '';
+
+        data.forEach(function (item, index) {
+            const tr = document.createElement('tr');
+            const taskCell = document.createElement('td');
+            const timeCell = document.createElement('td');
+            const clientCell = document.createElement('td');
+            const phoneCell = document.createElement('td');
+            const emailCell = document.createElement('td');
+            const dateCell = document.createElement('td');
+            const actionCell = document.createElement('td');
+
+            const editButton = document.createElement('button');
+            const deleteButton = document.createElement('button');
+
+            taskCell.textContent = item.task;
+            timeCell.textContent = item.time;
+            clientCell.textContent = item.client;
+            phoneCell.textContent = item.phone;
+            emailCell.textContent = item.email;
+            dateCell.textContent = item.date;
+
+            editButton.textContent = 'Editar';
+            deleteButton.textContent = 'Eliminar';
+
+            editButton.classList.add('edit');
+            deleteButton.classList.add('delete');
+
+            editButton.addEventListener('click', function () {
+                if (editButton.textContent === 'Editar') {
+                    editTask(index);
+                    editButton.textContent = 'Guardar';
+                } else {
+                    saveEditedTask(index);
+                    editButton.textContent = 'Editar';
+                }
+            });
+
+            deleteButton.addEventListener('click', function () {
+                deleteTask(index);
+            });
+
+            actionCell.appendChild(editButton);
+            actionCell.appendChild(deleteButton);
+
+            tr.appendChild(taskCell);
+            tr.appendChild(timeCell);
+            tr.appendChild(clientCell);
+            tr.appendChild(phoneCell);
+            tr.appendChild(emailCell);
+            tr.appendChild(dateCell);
+            tr.appendChild(actionCell);
+
+            taskList.appendChild(tr);
+        });
     }
-  
-    function editTask(li) {
-        const spans = li.querySelectorAll("span");
-        const fieldNames = ["Tarea", "Horario", "Cliente", "Número de Teléfono", "Correo Electrónico", "Fecha"];
-        
-        const newTexts = Array.from(spans).map((span, index) => {
-          const fieldName = fieldNames[index];
-          return prompt(`Editar ${fieldName}:`, span.textContent);
-        });
-      
-        newTexts.forEach((newText, index) => {
-          if (newText !== null) {
-            spans[index].textContent = newText;
-          }
-        });
-      
-        // Actualizar la tarea editada en localStorage
+
+    function editTask(index) {
+        const item = data[index];
+        taskInput.value = item.task;
+        timeInput.value = item.time;
+        clientInput.value = item.client;
+        phoneInput.value = item.phone;
+        emailInput.value = item.email;
+        dateInput.value = item.date;
+    }
+
+    function saveEditedTask(index) {
         const editedTask = {
-          task: spans[0].textContent,
-          time: spans[1].textContent,
-          client: spans[2].textContent,
-          phone: spans[3].textContent,
-          email: spans[4].textContent,
-          date: spans[5].textContent,
+            task: taskInput.value,
+            time: timeInput.value,
+            client: clientInput.value,
+            phone: phoneInput.value,
+            email: emailInput.value,
+            date: dateInput.value,
         };
-        updateTaskInLocalStorage(editedTask);
-      }
-      
-  
-    function updateTaskInLocalStorage(editedTask) {
-      const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-      const updatedTasks = storedTasks.map(task => (
-        task.task === editedTask.task ? editedTask : task
-      ));
-      localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+
+        data[index] = editedTask;
+        saveDataToLocalStorage();
+        renderTable();
+        taskForm.reset();
     }
-  
-    function deleteTask(li) {
-      taskList.removeChild(li);
-  
-      // Eliminar la tarea de localStorage
-      const deletedTask = {
-        task: li.querySelector("span").textContent,
-        time: li.querySelectorAll("span")[1].textContent,
-        client: li.querySelectorAll("span")[2].textContent,
-        phone: li.querySelectorAll("span")[3].textContent,
-        email: li.querySelectorAll("span")[4].textContent,
-        date: li.querySelectorAll("span")[5].textContent,
-      };
-      removeTaskFromLocalStorage(deletedTask);
+
+    function deleteTask(index) {
+        data.splice(index, 1);
+        saveDataToLocalStorage();
+        renderTable();
     }
-  
-    function removeTaskFromLocalStorage(deletedTask) {
-      const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-      const filteredTasks = storedTasks.filter(task => (
-        task.task !== deletedTask.task
-      ));
-      localStorage.setItem("tasks", JSON.stringify(filteredTasks));
-    }
-  });
-  
+
+    renderTable();
+});

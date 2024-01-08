@@ -16,7 +16,7 @@
       </center>
     
     <form id="taskForm">
-      <label for="task">Nueva Tarea:</label>
+      <label for="task">Actividad:</label>
       <input type="text" id="task" required>
 
       <label for="time">Horario:</label>
@@ -37,7 +37,20 @@
       <button type="submit">Agregar Tarea</button>
     </form>
 
-    <ul id="taskList"></ul>
+    <table>
+      <thead>
+        <tr>
+          <th>Actividad/Tarea</th>
+          <th>Horario</th>
+          <th>Cliente/Empresa</th>
+          <th>Número de Teléfono</th>
+          <th>Correo Electrónico</th>
+          <th>Fecha</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody id="taskList"></tbody>
+    </table>
   </div>
 
   <footer>
