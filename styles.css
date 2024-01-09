@@ -111,6 +111,15 @@ button.delete:hover {
     background-color: #2980b9;
 }
 
+/* Nuevas reglas para cambio de color al pasar el mouse sobre los botones de editar y eliminar */
+button.edit:hover {
+    background-color: #2ecc71;
+}
+
+button.delete:hover {
+    background-color: #e74c3c;
+}
+
 footer {
     background-color: #f4f4f4;
     color: #fff;
@@ -154,7 +163,6 @@ th, td {
 
 /* Resto del código... */
 
-/* Estilos responsive */
 @media screen and (max-width: 600px) {
     .container {
         padding: 10px;
@@ -163,6 +171,39 @@ th, td {
 
     input,
     button {
-        width: 100%; /* Ajusta el ancho al 100% en pantallas pequeñas */
+        width: 100%;
+    }
+
+    table {
+        overflow-x: auto;
+        width: 100%; /* Asegura que la tabla ocupe el 100% del contenedor */
+    }
+
+    th, td {
+        white-space: nowrap;
+    }
+
+    th, td:before {
+        display: none;
+    }
+
+    /* Nuevas reglas para adaptar la tabla al contenedor en pantallas pequeñas */
+    table thead,
+    table tbody,
+    table th,
+    table td,
+    table tr {
+        display: block;
+    }
+
+    table tbody {
+        height: auto;
+        max-height: 300px; /* O ajusta según sea necesario para evitar que la tabla sea demasiado alta */
+        overflow-y: auto;
+    }
+
+    th, td {
+        width: 100%; /* O ajusta según sea necesario para distribuir el ancho de las columnas */
+        box-sizing: border-box;
     }
 }
