@@ -1,24 +1,21 @@
-/* Estilos para el encabezado (header) */
 header {
     background-color: #f4f4f4;
     padding: 1px 0;
 }
 
 header img {
-    width: 100px; /* Ajusta el tamaño según sea necesario */
+    width: 100px;
     height: auto;
-    border-radius: 20%; /* Estilo de esquinas redondeadas */
-    display: block; /* Centra la imagen */
-    margin: 0 auto; /* Centra la imagen */
+    border-radius: 20%;
+    display: block;
+    margin: 0 auto;
 }
 
 header p {
     margin-top: 10px;
-    font-size: 2em; /* Ajusta el tamaño del texto según sea necesario */
+    font-size: 2em;
     color: #333;
 }
-
-/* Resto del código... */
 
 body {
     font-family: 'Arial', sans-serif;
@@ -132,21 +129,20 @@ footer p {
     font-size: 14px;
     margin: 0;
 }
-/* Resto del código... */
 
 button.edit,
 button.delete,
 button.save {
-    margin-right: 10px; /* Ajusta la distancia entre los botones */
-    width: 80px; /* Establece un ancho fijo para los botones */
+    margin-right: 10px;
+    width: 80px;
 }
 
 button.save {
-    background-color: #4caf50; /* Cambia el color del botón "Guardar" */
+    background-color: #4caf50;
 }
 
 button.save:hover {
-    background-color: #45a049; /* Cambia el color al pasar el mouse sobre el botón "Guardar" */
+    background-color: #45a049;
 }
 
 table {
@@ -161,8 +157,6 @@ th, td {
     text-align: left;
 }
 
-/* Resto del código... */
-
 @media screen and (max-width: 600px) {
     .container {
         padding: 10px;
@@ -176,7 +170,7 @@ th, td {
 
     table {
         overflow-x: auto;
-        width: 100%; /* Asegura que la tabla ocupe el 100% del contenedor */
+        width: 100%;
     }
 
     th, td {
@@ -187,7 +181,6 @@ th, td {
         display: none;
     }
 
-    /* Nuevas reglas para adaptar la tabla al contenedor en pantallas pequeñas */
     table thead,
     table tbody,
     table th,
@@ -198,12 +191,12 @@ th, td {
 
     table tbody {
         height: auto;
-        max-height: 300px; /* O ajusta según sea necesario para evitar que la tabla sea demasiado alta */
+        max-height: 300px;
         overflow-y: auto;
     }
 
     th, td {
-        width: 100%; /* O ajusta según sea necesario para distribuir el ancho de las columnas */
+        width: 100%;
         box-sizing: border-box;
     }
 }
